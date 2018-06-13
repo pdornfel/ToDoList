@@ -20,7 +20,7 @@ class CoreDataStack {
         let container = NSPersistentContainer(name: "ToDoList")
         container.loadPersistentStores() { storeDescription, error in
             if let error = error as NSError? {
-                fatalError("unresolved errro: \(error), \(error.userInfo)")
+                fatalError("unresolved error: \(error), \(error.userInfo)")
             }
         }
         return container
@@ -60,6 +60,18 @@ class CoreDataStack {
 //        return moc
 //    }()
     
+}
+
+extension NSManagedObjectContext {
+    func saveChanges(){
+        if self.hasChanges {
+            do {
+                try save()
+            } catch {
+                fatalError("error: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 
