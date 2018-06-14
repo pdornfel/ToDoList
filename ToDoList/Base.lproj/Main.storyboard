@@ -13,7 +13,7 @@
         <!--To Do List Controller-->
         <scene sceneID="f94-U7-CE6">
             <objects>
-                <tableViewController id="Bms-Wv-NrY" customClass="ToDoListController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController definesPresentationContext="YES" id="Bms-Wv-NrY" customClass="ToDoListController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Pl-e9-SSI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,6 +35,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="c50-qI-tKM" kind="show" identifier="showToDo" id="fLq-G0-ihD"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -149,6 +152,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yda-pm-o5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1464.8" y="31.934032983508249"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="Ic7-Nb-4CX">
+            <objects>
+                <viewController id="c50-qI-tKM" customClass="DetailViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ceL-dg-6f3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g6Q-fg-DrH">
+                                <rect key="frame" x="16" y="318.5" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bs5-pe-OoK">
+                                <rect key="frame" x="0.0" y="611" width="375" height="56"/>
+                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="UrE-9r-Uyc"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteItem:" destination="c50-qI-tKM" eventType="touchUpInside" id="gyU-XY-0UY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="g6Q-fg-DrH" firstAttribute="centerY" secondItem="ceL-dg-6f3" secondAttribute="centerY" id="AaG-w8-JzV"/>
+                            <constraint firstItem="g6Q-fg-DrH" firstAttribute="leading" secondItem="bGL-vM-aSL" secondAttribute="leading" constant="16" id="Xnw-a2-OvN"/>
+                            <constraint firstItem="bs5-pe-OoK" firstAttribute="leading" secondItem="bGL-vM-aSL" secondAttribute="leading" id="gAi-6w-ra8"/>
+                            <constraint firstItem="bGL-vM-aSL" firstAttribute="trailing" secondItem="g6Q-fg-DrH" secondAttribute="trailing" constant="16" id="s5G-MB-EGf"/>
+                            <constraint firstItem="bGL-vM-aSL" firstAttribute="trailing" secondItem="bs5-pe-OoK" secondAttribute="trailing" id="xbS-xg-knM"/>
+                            <constraint firstItem="bGL-vM-aSL" firstAttribute="bottom" secondItem="bs5-pe-OoK" secondAttribute="bottom" id="ybQ-vR-C2Z"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bGL-vM-aSL"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3sg-Yz-mQx">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="zKh-Ni-tW2">
+                            <connections>
+                                <action selector="save:" destination="c50-qI-tKM" id="yij-lU-Tjt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="detailTextField" destination="g6Q-fg-DrH" id="i1b-JL-zKG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BR5-4A-6d2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3300" y="762"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vmn-xZ-RVe">

@@ -13,27 +13,28 @@ class ToDoListController: UITableViewController {
     
     let managedObjectContext = CoreDataStack().managedObjectContext
     
-    lazy var fetchedResultsController: NSFetchedResultsController<Item> = {
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        return controller
+    lazy var fetchedResultsController: ToDoFetchedResultsController = {
+        return ToDoFetchedResultsController(managedObjectContext: managedObjectContext, tableView: tableView)
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchedResultsController.delegate = self
-
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            print("errror \(error.localizedDescription)")
-        }
+    }
+    
+    // MARK: - UITableView Delegate
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
     }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let item = fetchedResultsController.object(at: indexPath)
+        managedObjectContext.delete(item)
+        managedObjectContext.saveChanges()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,16 +61,16 @@ class ToDoListController: UITableViewController {
             let navigationController = segue.destination as! UINavigationController
             let addTaskController = navigationController.topViewController as! AddTaskController
             addTaskController.managedObjectContext = self.managedObjectContext
+        } else if segue.identifier == "showToDo" {
+            guard let detailVC = segue.destination as? DetailViewController, let indexPath = tableView.indexPathForSelectedRow else { return }
+            let item = fetchedResultsController.object(at: indexPath)
+            detailVC.item = item
+            detailVC.context = self.managedObjectContext
         }
     }
 
 }
 
-extension ToDoListController: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        tableView.reloadData()
-    }
-}
 
 
 
