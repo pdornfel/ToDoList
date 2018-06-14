@@ -19,12 +19,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="N8s-1P-y5j">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" textLabel="6cN-J7-tnX" style="IBUITableViewCellStyleDefault" id="N8s-1P-y5j">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N8s-1P-y5j" id="9M3-Us-hkV">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6cN-J7-tnX">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -36,7 +45,7 @@
                     <navigationItem key="navigationItem" id="fcD-aU-PsX">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZKd-ew-sk9">
                             <connections>
-                                <segue destination="d22-h3-ADX" kind="presentation" id="pcf-hE-3wD"/>
+                                <segue destination="d22-h3-ADX" kind="presentation" identifier="newItem" id="pcf-hE-3wD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -53,22 +62,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="w9h-yy-OD9">
-                                <rect key="frame" x="162.5" y="146" width="50" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="w9h-yy-OD9">
+                                <rect key="frame" x="163" y="146" width="50" height="50"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PVC-Qb-WzK">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PVC-Qb-WzK">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Sly-ra-uQd">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Sly-ra-uQd">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TmF-kd-WLW">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TmF-kd-WLW">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ixa-OC-fOi">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ixa-OC-fOi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <subviews>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="owD-TB-q5A">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="owD-TB-q5A">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     </stackView>
                                                                 </subviews>
@@ -96,7 +105,10 @@
                             <constraint firstItem="w9h-yy-OD9" firstAttribute="centerX" secondItem="lR4-rd-n2h" secondAttribute="centerX" id="2Ce-hP-9Wt"/>
                             <constraint firstItem="bMQ-qG-k7V" firstAttribute="top" secondItem="qhD-1J-9xv" secondAttribute="top" constant="32" id="GXg-07-YgI"/>
                             <constraint firstItem="bMQ-qG-k7V" firstAttribute="leading" secondItem="qhD-1J-9xv" secondAttribute="leading" constant="16" id="Khg-d2-6sv"/>
+                            <constraint firstItem="w9h-yy-OD9" firstAttribute="leading" secondItem="qhD-1J-9xv" secondAttribute="leading" constant="163" id="bJ9-2X-GNg"/>
+                            <constraint firstItem="qhD-1J-9xv" firstAttribute="bottom" secondItem="w9h-yy-OD9" secondAttribute="bottom" constant="471" id="fbo-vu-JLW"/>
                             <constraint firstItem="qhD-1J-9xv" firstAttribute="trailing" secondItem="bMQ-qG-k7V" secondAttribute="trailing" constant="16" id="qR9-oZ-4mB"/>
+                            <constraint firstItem="w9h-yy-OD9" firstAttribute="top" secondItem="bMQ-qG-k7V" secondAttribute="bottom" constant="20" id="xyg-qD-OXb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qhD-1J-9xv"/>
                     </view>
